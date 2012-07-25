@@ -1,4 +1,4 @@
-﻿__XNA 4.0 Content Compiler__ Compile to .xnb your texture files, audio files and SpriteFont files without adding to the Content project. 
+__XNA 4.0 Content Compiler__ Compile to .xnb your texture files, audio files and SpriteFont files without adding to the Content project. 
 Very Usefull in tools to create content for a game.
 
 Compile (All supported by XNA):
