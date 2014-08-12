@@ -77,14 +77,33 @@ namespace XNAContentCompiler
 		    // add the content items
 		    foreach (var contentItem in xnaContentProject.ContentItems)
 		    {
-			    buildProject.AddItem("Compile", contentItem.FilePath, new Dictionary<string, string>
+			    ProjectItem item = buildProject.AddItem("Compile", contentItem.FilePath, new Dictionary<string, string>
 			    {
 				    {"Link", Path.GetFileName(contentItem.FilePath)},
 				    {"Name", contentItem.ContentItem},
 				    {"Importer", contentItem.Importer.ToString()},
 				    {"Processor", contentItem.Processor.ToString()},
-				    {"GenerateMipMaps", contentItem.GenerateMipmaps ? "true" : "false"}
-			    });
+			    })[0];
+
+			    if (contentItem.GenerateMipmaps.HasValue)
+				    item.SetMetadataValue("ProcessorParameters_GenerateMipmaps", contentItem.GenerateMipmaps.Value ? "true" : "false");
+				if (contentItem.PremultiplyAlpha.HasValue)
+					item.SetMetadataValue("ProcessorParameters_PremultiplyAlpha", contentItem.PremultiplyAlpha.Value ? "true" : "false");
+				if (contentItem.ResizeToPowerOfTwo.HasValue)
+					item.SetMetadataValue("ProcessorParameters_ResizeToPowerOfTwo", contentItem.ResizeToPowerOfTwo.Value ? "true" : "false");
+				if (contentItem.TextureFormat.HasValue)
+					item.SetMetadataValue("ProcessorParameters_TextureFormat", contentItem.TextureFormat.ToString());
+			    if (contentItem.ColorKeyEnabled.HasValue)
+			    {
+				    item.SetMetadataValue("ProcessorParameters_ColorKeyEnabled", contentItem.ColorKeyEnabled.Value ? "true" : "false");
+				    if (contentItem.ColorKeyEnabled == true)
+				    {
+					    item.SetMetadataValue("ProcessorParameters_ColorKeyColor", string.Format("{0}, {1}, {2}, {3}", 
+							contentItem.ColorKeyColor.R, contentItem.ColorKeyColor.G, contentItem.ColorKeyColor.B, contentItem.ColorKeyColor.A));
+				    }
+				}
+				if (contentItem.Quality.HasValue)
+					item.SetMetadataValue("ProcessorParameters_Quality", contentItem.Quality.ToString());
 		    }
 
 			return buildProject;

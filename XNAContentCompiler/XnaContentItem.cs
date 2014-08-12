@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 
@@ -52,8 +53,44 @@ namespace XNAContentCompiler
 		[Category("Processing")]
 		public XnaContentProcessors Processor { get; set; }
 
-		[Category("Textures")]
-		public bool GenerateMipmaps { get; set; }
+		// texture processors
+
+		[Category("Texture Processors")]
+		public bool? GenerateMipmaps { get; set; }
+
+		[Category("Texture Processors")]
+		public bool? ColorKeyEnabled { get; set; }
+
+		[Category("Texture Processors")]
+		public bool? PremultiplyAlpha { get; set; }
+
+		[Category("Texture Processors")]
+		public bool? ResizeToPowerOfTwo { get; set; }
+
+		[Category("Texture Processors")]
+		public TextureProcessorOutputFormat? TextureFormat { get; set; }
+
+		[Category("Texture Processors")]
+		public Color ColorKeyColor { get; set; }
+
+		// audio processors
+
+		[Category("Audio Processors")]
+		public ConversionQuality? Quality { get; set; }
+	}
+
+	public enum ConversionQuality
+	{
+		Low, 
+		Medium,
+		Best
+	}
+
+	public enum TextureProcessorOutputFormat
+	{
+		Color,
+		DxtCompressed,
+		NoChange
 	}
 
 	public enum XnaContentImporters
@@ -86,6 +123,5 @@ namespace XNAContentCompiler
 		public string OutputDirectory { get; set; }
 
 		public IList<XnaContentItem> ContentItems { get; set; } 
-
 	}
 }

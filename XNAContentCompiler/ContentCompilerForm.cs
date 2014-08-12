@@ -52,6 +52,11 @@ namespace XNAContentCompiler
 			}
         }
 
+		private void AddContentFolder(object sender, EventArgs e)
+		{
+
+		}
+
 	    private void RemoveContentItem(object sender, EventArgs e)
 	    {
 		    if (MessageBox.Show("Are you sure you want to remove the selected items?", "Remove Item", 
@@ -73,7 +78,7 @@ namespace XNAContentCompiler
 
 		private void GridSelectionChanged(object sender, EventArgs e)
 		{
-			propertyGrid1.SelectedObjects = dataGridView.SelectedRows.Cast<DataGridViewRow>().Select(x => x.DataBoundItem).ToArray();
+			propertyGrid.SelectedObjects = dataGridView.SelectedRows.Cast<DataGridViewRow>().Select(x => x.DataBoundItem).ToArray();
 		}
 
 		// content project
@@ -113,7 +118,12 @@ namespace XNAContentCompiler
 
 	    private void EditProjectSettings(object sender, EventArgs e)
 		{
-			propertyGrid1.SelectedObject = xnaContentProject;
+			propertyGrid.SelectedObject = xnaContentProject;
+		}
+
+		private void HelpAbout(object sender, EventArgs e)
+		{
+
 		}
 
 		// logging to the log window
