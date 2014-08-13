@@ -1,19 +1,31 @@
-__XNA 4.0 Content Compiler__ Compile to .xnb your texture files, audio files and SpriteFont files without adding to the Content project. 
-Very Usefull in tools to create content for a game.
+Compile to .xnb your texture files, audio files and SpriteFont files without needing Visual Studio 2010 or having to install the XNA Game Studio.
 
-Compile (All supported by XNA):
+## XNA Content Compiler
 
-Image Files: *.bmp, *.jpg, *.png, *.tga, *.dds  
-Audio Files: *.wav, *.mp3, *.wma  
-SpriteFont Files: *.spritefont  
+You can use this tool co compile your game content for XNA or MonoGame without having to create and use the Game Content Project in Visual Studio 2010. 
 
-With the source Code, just add more file types(Like .X or .fbx) and compile it !!
+## Content Types
 
-_the above texts is from the original [XNA 4.0 Content Compiler on CodePlex](http://xnacontentcompiler.codeplex.com/)._
+XNA Content Compiler supports all the types of the XNA Content Pipeline.
 
-------
+Currently supported types:
 
-My Improvements:
-------
-* Build content files one by one.
-* `Compress Content` option.
+* **Image Files**: `*.bmp`, `*.jpg`, `*.png`, `*.tga`, `*.dds`  
+* **Audio Files**: `*.wav`, `*.mp3`, `*.wma`  
+* **SpriteFont Files**: `*.spritefont`  
+
+There are more types that are supported by the XNA Content Pipeline, but they do not have all the UI features yet. If you need a new type, just create an issue or pull request.
+
+## Features
+
+* Advanced UI 
+* Supports all features of the pipeline
+* Add individual files or entire folders
+* In-memory project files
+* *(soon)* Import `*.contentproj` files
+* *(soon)* Save compiler project files
+* *(soon)* All content types
+
+----
+
+*This work is based on http://xnacontentcompiler.codeplex.com*
