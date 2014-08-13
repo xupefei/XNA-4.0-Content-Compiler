@@ -66,6 +66,11 @@
 			this.toolBuildContentProject = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolProjectSettings = new System.Windows.Forms.ToolStripButton();
+			this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+			this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colImporter = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colProcessor = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
 			this.toolStripContainer1.ContentPanel.SuspendLayout();
 			this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -89,7 +94,7 @@
 			this.propertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.propertyGrid.Location = new System.Drawing.Point(0, 0);
 			this.propertyGrid.Name = "propertyGrid";
-			this.propertyGrid.Size = new System.Drawing.Size(171, 548);
+			this.propertyGrid.Size = new System.Drawing.Size(277, 547);
 			this.propertyGrid.TabIndex = 17;
 			// 
 			// openFileDialog
@@ -110,11 +115,11 @@
 			// 
 			this.toolStripContainer1.ContentPanel.AutoScroll = true;
 			this.toolStripContainer1.ContentPanel.Controls.Add(this.mainInterfacePanel);
-			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(941, 548);
+			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1154, 547);
 			this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
 			this.toolStripContainer1.Name = "toolStripContainer1";
-			this.toolStripContainer1.Size = new System.Drawing.Size(941, 643);
+			this.toolStripContainer1.Size = new System.Drawing.Size(1154, 642);
 			this.toolStripContainer1.TabIndex = 19;
 			this.toolStripContainer1.Text = "toolStripContainer1";
 			// 
@@ -131,7 +136,7 @@
             this.statusProgressBar});
 			this.statusStrip.Location = new System.Drawing.Point(0, 0);
 			this.statusStrip.Name = "statusStrip";
-			this.statusStrip.Size = new System.Drawing.Size(941, 30);
+			this.statusStrip.Size = new System.Drawing.Size(1154, 30);
 			this.statusStrip.TabIndex = 1;
 			// 
 			// statusTextLabel
@@ -163,8 +168,8 @@
 			// mainInterfacePanel.Panel2
 			// 
 			this.mainInterfacePanel.Panel2.Controls.Add(this.propertyGrid);
-			this.mainInterfacePanel.Size = new System.Drawing.Size(941, 548);
-			this.mainInterfacePanel.SplitterDistance = 766;
+			this.mainInterfacePanel.Size = new System.Drawing.Size(1154, 547);
+			this.mainInterfacePanel.SplitterDistance = 873;
 			this.mainInterfacePanel.TabIndex = 19;
 			// 
 			// splitContainer2
@@ -182,20 +187,29 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.logWindow);
-			this.splitContainer2.Size = new System.Drawing.Size(766, 548);
-			this.splitContainer2.SplitterDistance = 378;
+			this.splitContainer2.Size = new System.Drawing.Size(873, 547);
+			this.splitContainer2.SplitterDistance = 377;
 			this.splitContainer2.TabIndex = 21;
 			// 
 			// dataGridView
 			// 
+			this.dataGridView.AllowUserToAddRows = false;
+			this.dataGridView.AllowUserToDeleteRows = false;
 			this.dataGridView.AllowUserToOrderColumns = true;
 			this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colName,
+            this.colFileName,
+            this.colImporter,
+            this.colProcessor});
 			this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridView.Location = new System.Drawing.Point(0, 0);
 			this.dataGridView.Name = "dataGridView";
+			this.dataGridView.ReadOnly = true;
+			this.dataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
 			this.dataGridView.RowTemplate.Height = 28;
 			this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridView.Size = new System.Drawing.Size(766, 378);
+			this.dataGridView.Size = new System.Drawing.Size(873, 377);
 			this.dataGridView.TabIndex = 17;
 			this.dataGridView.SelectionChanged += new System.EventHandler(this.GridSelectionChanged);
 			// 
@@ -205,7 +219,7 @@
 			this.logWindow.Location = new System.Drawing.Point(0, 0);
 			this.logWindow.Multiline = true;
 			this.logWindow.Name = "logWindow";
-			this.logWindow.Size = new System.Drawing.Size(766, 166);
+			this.logWindow.Size = new System.Drawing.Size(873, 166);
 			this.logWindow.TabIndex = 19;
 			// 
 			// mainMenuStrip
@@ -217,7 +231,7 @@
             this.menuHelp});
 			this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
 			this.mainMenuStrip.Name = "mainMenuStrip";
-			this.mainMenuStrip.Size = new System.Drawing.Size(941, 33);
+			this.mainMenuStrip.Size = new System.Drawing.Size(1154, 33);
 			this.mainMenuStrip.TabIndex = 0;
 			// 
 			// menuFile
@@ -361,7 +375,7 @@
 			// menuHelpAbout
 			// 
 			this.menuHelpAbout.Name = "menuHelpAbout";
-			this.menuHelpAbout.Size = new System.Drawing.Size(198, 30);
+			this.menuHelpAbout.Size = new System.Drawing.Size(146, 30);
 			this.menuHelpAbout.Text = "&About...";
 			this.menuHelpAbout.Click += new System.EventHandler(this.HelpAbout);
 			// 
@@ -438,11 +452,42 @@
 			this.toolProjectSettings.Text = "Project Settings";
 			this.toolProjectSettings.Click += new System.EventHandler(this.EditProjectSettings);
 			// 
+			// colName
+			// 
+			this.colName.DataPropertyName = "ContentItem";
+			this.colName.HeaderText = "Name";
+			this.colName.Name = "colName";
+			this.colName.ReadOnly = true;
+			this.colName.Width = 150;
+			// 
+			// colFileName
+			// 
+			this.colFileName.DataPropertyName = "FileName";
+			this.colFileName.HeaderText = "File Name";
+			this.colFileName.Name = "colFileName";
+			this.colFileName.ReadOnly = true;
+			// 
+			// colImporter
+			// 
+			this.colImporter.DataPropertyName = "Importer";
+			this.colImporter.HeaderText = "Importer";
+			this.colImporter.Name = "colImporter";
+			this.colImporter.ReadOnly = true;
+			this.colImporter.Width = 150;
+			// 
+			// colProcessor
+			// 
+			this.colProcessor.DataPropertyName = "Processor";
+			this.colProcessor.HeaderText = "Processor";
+			this.colProcessor.Name = "colProcessor";
+			this.colProcessor.ReadOnly = true;
+			this.colProcessor.Width = 150;
+			// 
 			// ContentCompilerForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(941, 643);
+			this.ClientSize = new System.Drawing.Size(1154, 642);
 			this.Controls.Add(this.toolStripContainer1);
 			this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.MainMenuStrip = this.mainMenuStrip;
@@ -516,6 +561,11 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
 		private System.Windows.Forms.ToolStripButton toolProjectSettings;
 		private System.Windows.Forms.ToolStripMenuItem menuAddContentFolder;
+		private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+		private System.Windows.Forms.DataGridViewTextBoxColumn colName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn colFileName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn colImporter;
+		private System.Windows.Forms.DataGridViewTextBoxColumn colProcessor;
     }
 }
 

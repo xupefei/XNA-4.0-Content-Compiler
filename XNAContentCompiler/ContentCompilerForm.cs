@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using XNAContentCompiler.Building;
+using XNAContentCompiler.Creation;
 
 namespace XNAContentCompiler
 {
@@ -16,7 +18,7 @@ namespace XNAContentCompiler
 		// fields
 
 	    private readonly XnaContentProject xnaContentProject;
-        private readonly ContentBuilder contentBuilder;
+        private readonly ProjectBuilder projectBuilder;
 
 		// constructors
 
@@ -24,11 +26,13 @@ namespace XNAContentCompiler
         {
 	        InitializeComponent();
 
-			contentBuilder = new ContentBuilder();
-	        contentBuilder.Error += (sender, e) => LogMessage(e.Message, false);
+			projectBuilder = new ProjectBuilder();
+	        projectBuilder.Error += (sender, e) => LogMessage(e.Message, false);
 
 			xnaContentProject = new XnaContentProject();
 			xnaContentProject.ContentItems = new BindingList<XnaContentItem>();
+
+	        dataGridView.AutoGenerateColumns = false;
 			dataGridView.DataSource = xnaContentProject.ContentItems;
 		}
 
@@ -54,7 +58,13 @@ namespace XNAContentCompiler
 
 		private void AddContentFolder(object sender, EventArgs e)
 		{
-
+			if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+			{
+				foreach (var path in Directory.GetFiles(folderBrowserDialog.SelectedPath))
+				{
+					xnaContentProject.ContentItems.Add(new XnaContentItem(path));
+				}
+			}
 		}
 
 	    private void RemoveContentItem(object sender, EventArgs e)
@@ -97,7 +107,7 @@ namespace XNAContentCompiler
 			    // do the work
 			    try
 			    {
-				    bool success = await Task.Run(() => contentBuilder.Build(xnaContentProject));
+				    bool success = await Task.Run(() => projectBuilder.Build(xnaContentProject));
 				    LogMessage(success ? "Build completed successfully." : "Build failed.", true);
 			    }
 			    catch (Exception ex)
