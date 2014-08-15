@@ -15,7 +15,7 @@ namespace XNAContentCompiler
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ContentCompilerForm());
+            Application.Run(new Form1());
         }
     }
 }
