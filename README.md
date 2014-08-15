@@ -1,3 +1,7 @@
+### This project is now maintained by [mattleibow](https://github.com/mattleibow) and available at [https://github.com/mattleibow/XNA-4.0-Content-Compiler](https://github.com/mattleibow/XNA-4.0-Content-Compiler).
+
+--------
+
 __XNA 4.0 Content Compiler__ Compile to .xnb your texture files, audio files and SpriteFont files without adding to the Content project. 
 Very Usefull in tools to create content for a game.
 
